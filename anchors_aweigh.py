@@ -33,3 +33,9 @@ elif prob == 0:
     prob == 1
 
 print(intro + str(prob) + "%" + ".")
+
+## Improvements to be made
+# I want it to give ranges sometimes instead of single numbers.
+# Having granularity down to 5% would feel more natural
+# Add flow that allows for sentence endings.
+# Go as low as 0.5% or as high as 99.5%?
