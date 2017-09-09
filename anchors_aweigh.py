@@ -1,4 +1,5 @@
-import random
+import random as rm
+import math
 
 ## A script with the purpose of countering
 ## anchoring effects when assigning probabilities
@@ -22,20 +23,37 @@ sentence_intros = ["Feels like ",
 "I'd bet at "]
 
 ## Pick an intro at random
-i = int(random.uniform(0,len(sentence_intros)))
+i = int(rm.uniform(0,len(sentence_intros)))
 intro = sentence_intros[i]
 
-## Generate a probability that is in the interval (0,1)
-prob = int(10 * round(random.randint(0,10)))
-if prob == 100:
-    prob = 99
-elif prob == 0:
-    prob == 1
+## "I beseech you, in the bowels of Christ, think it possible that you may be mistaken."
+## -- Oliver Cromwell, namesake of Cromwell's rule
+def cromwell(p):
+    if p == 100:
+        return(99)
+    elif p == 0:
+        return(1)
+    else:
+        return(p)
 
-print(intro + str(prob) + "%" + ".")
+## Randomly choose to give a probability or a range of probabilities
+if rm.random() > 0.33:
+    ## Generate a pair of probabilities
+    low = cromwell(10 * rm.randint(0,10))
+    high = cromwell(10 * rm.randint(0,10))
+
+    print(intro + str(low) + "%" + "-" + str(high) + "% " ".")
+
+else:
+    ## Generate a probability that is in the interval (0,1)
+    p = int(10 * rm.randint(0,10))
+    p = cromwell(p)
+
+    print(intro + str(p) + "%" + ".")
+
+
 
 ## Improvements to be made
-# I want it to give ranges sometimes instead of single numbers.
 # Having granularity down to 5% would feel more natural
 # Add flow that allows for sentence endings.
 # Go as low as 0.5% or as high as 99.5%?
