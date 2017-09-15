@@ -38,9 +38,12 @@ def cromwell(p):
 
 ## Randomly choose to give a probability or a range of probabilities
 if rm.random() > 0.33:
-    ## Generate a pair of probabilities
-    low = cromwell(10 * rm.randint(0,10))
-    high = cromwell(10 * rm.randint(0,10))
+    low = 80
+    high = 40
+    while (low > high) | (low == high):
+        ## Generate a pair of probabilities
+        low = cromwell(10 * rm.randint(0,10))
+        high = cromwell(10 * rm.randint(0,10))
 
     print(intro + str(low) + "%" + "-" + str(high) + "% " ".")
 
