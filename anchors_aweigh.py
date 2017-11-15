@@ -22,7 +22,6 @@ sentence_intros = ["Feels like ",
 "On baserates, I would guess...",
 "I'd bet at "]
 
-## Pick an intro at random
 
 ## "I beseech you, in the bowels of Christ, think it possible that you may be mistaken."
 ## -- Oliver Cromwell, namesake of Cromwell's rule
@@ -35,9 +34,11 @@ def cromwell(p):
         return(p)
 
 while True:
+    ## Pick an intro at random
     i = int(rm.uniform(0,len(sentence_intros)))
     intro = sentence_intros[i]
-    raw_input('>>')
+
+    raw_input(intro[:-1] + "...")
 
     ## Randomly choose to give a probability or a range of probabilities
     if rm.random() > 0.33:
@@ -48,14 +49,15 @@ while True:
             low = cromwell(10 * rm.randint(0,10))
             high = cromwell(10 * rm.randint(0,10))
 
-        print(intro + str(low) + "%" + "-" + str(high) + "% " ".")
+        print(str(low) + "%" + "-" + str(high) + "%" + ".")
 
     else:
         ## Generate a probability that is in the interval (0,1)
         p = int(10 * rm.randint(0,10))
         p = cromwell(p)
 
-        print(intro + str(p) + "%" + ".")
+        print(str(p) + "%" + ".")
+    raw_input()
 
 
 
